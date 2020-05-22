@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.logged_in %}
+        <div class="student_table" align="center">
+            <h3 align="center">Students</h3>
+            <table border="5" style="width=100%">
+                <thead>
+                    <tr>
+                        <th align="center">Student ID:</th>
+                        <th align="center">Last Name:</th>
+                        <th align="center">First Name:</th>
+                        <th align="center">View Grades:</th>
+                    </tr>
+                </thead>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.ID }}</td>
+                        <td>{{ student.lastName }}</td>
+                        <td>{{ student.firstName }}</td>
+                        <td><button onclick="window.location.href = '/student/{{ student.ID }}'">Get Grades</button> </td>
+                    </tr>
+                {% else %}
+                <tr>No Students</tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="quizzes_table" align="center">
+            <h3 align="center">Quizzes</h3>
+            <table border="5" style="width=100%">
+                <thead>
+                    <tr>
+                        <th align="center">Quiz ID:</th>
+                        <th align="center">Subject:</th>
+                        <th align="center">Number of Questions:</th>
+                        <th align="center">Quiz Date:</th>
+                    </tr>
+                </thead>
+                {% for quiz in quizzes %}
+                    <tr>
+                        <td>{{ quiz.ID }}</td>
+                        <td>{{ quiz.subject }}</td>
+                        <td>{{ quiz.questions }}</td>
+                        <td>{{ quiz.quizDate }}</td>
+                    </tr>
+                {% else %}
+                <tr>No Quizzes</tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <br>
+        <div class="buttons">
+            <button onclick="window.location.href = '{{ url_for('addStudent') }}';">Add New Student</button>
+            <button onclick="window.location.href = '{{ url_for('addQuiz') }}';">Add New Quiz</button>
+            <button onclick="window.location.href = '{{ url_for('addResult') }}';">Add New Quiz Result</button>
+        </div>
+        {% endif %}
+{% endblock %}

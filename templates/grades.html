@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if message %}
+    <p class="message">{{ message }}
+{% endif %}
+
+<h4><b>Student Name:</b> {{ student.firstName}} {{ student.lastName }}</h4>
+<h5><b>Student ID:</b> {{ student.ID}}</h5>
+
+<div class="results" align="center">
+        <h3 align="center">Grades</h3>
+        <table border="5" style="width=100%">
+            <thead>
+                <tr>
+                    <th align="center">Quiz ID:</th>
+                    <th align="center">Subject:</th>
+                    <th align="center">Grade:</th>
+                    <th align="center">Number of Questions:</th>
+                    <th align="center">Date of Quiz:</th>
+                </tr>
+            </thead>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.quizID }}</td>
+                    <td>{{ result.subject }}</td>
+                    <td>{{ result.grade }}</td>
+                    <td>{{ result.questions }}</td>
+                    <td>{{ result.quizDate }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock %}

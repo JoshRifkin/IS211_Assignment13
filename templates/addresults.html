@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form action="{{ url_for('addResult') }}" method="post">
+    Quiz Subject:
+    <select name="quiz">
+        {% for quiz in quizzes %}
+        <option name="subject">{{ quiz.ID }}</option>
+        {% endfor %}
+    </select><br>
+    Student Name:
+    <select name="student">
+        {% for student in students %}
+        <option name="student">{{ student.ID }}</option>
+        {% endfor %}
+    </select><br>
+    Grade: <input type="number" name="grade" required><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
